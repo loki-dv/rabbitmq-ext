@@ -64,6 +64,9 @@ case "$2" in
     done
     echo $mem
     ;;
+  proc_memory)
+    ps -aux | grep rabbitmq_server | grep -v grep | awk '{ print $6 }'
+    ;;
   deliver)
     sed -n -e "$1p" /tmp/rabbit-ext-stat-deliver
     ;;
