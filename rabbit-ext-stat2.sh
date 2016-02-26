@@ -74,10 +74,7 @@ case "$2" in
     sed -n -e "$1p" /tmp/rabbit-ext-stat-ids
     ;;
   alive_telnet)
-    if echo q | telnet -e q localhost 15672| grep -oq Connected &> /dev/null
-      then echo 1
-      else echo 0
-    fi;
+    bash -c 'if echo q | telnet -e q localhost 15672| grep -oq Connected; then echo 1; else echo 0; fi;' 2>/dev/null
     ;;
   slave)
     sed -n -e "$1p" /tmp/rabbit-ext-stat-slave-nodes
